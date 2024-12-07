@@ -6,7 +6,7 @@ export default async function DashboardPage() {
 
     return (
         <div className="fle">
-            Dashboard
+            Dashboard page
         </div>
     )
 };
