@@ -3,8 +3,17 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import Logo from "@/public/logo.png";
 import { DashboardLinks } from "../components/DashboardLinks";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { auth, signOut } from "../lib/auth";
+import { requireUser } from "../lib/hooks";
 
-export default function DashboardLayout({children}: {children: ReactNode}) {
+export default async function DashboardLayout({children}: {children: ReactNode}) {
+
+    const session = await requireUser();
     return(
         <>
             <div className="min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -30,7 +39,54 @@ export default function DashboardLayout({children}: {children: ReactNode}) {
 
                 <div className="flex flex-col">
                     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-                        hello
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button
+                                    size="icon" variant="outline"
+                                    className="md:hidden shrink-0"
+                                >
+                                    <Menu className="size-5"/>
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="left" className="flex flex-col">
+                                <nav className="grid gap-2 mt-10">
+                                    <DashboardLinks/>
+                                </nav>
+                            </SheetContent>
+                        </Sheet>
+
+                        <div className="ml-auto flex items-center gap-x-4">
+                            <ThemeToggle/>
+
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="secondary" size="icon" className="rounded-full">
+                                        <img 
+                                            src={session?.user?.image as string} alt="Profile Image"
+                                            width={20} height={20}
+                                            className="rounded-full w-full h-full"
+                                        />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                    <DropdownMenuSeparator/>
+                                    <DropdownMenuItem asChild>
+                                        <Link href="/dashboard/settings">Settings</Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem asChild>
+                                        <form className="w-full"
+                                            action={async () => {
+                                                "use server"
+                                                await signOut();
+                                            }}
+                                        >
+                                            <button className="w-full text-left">Log out</button>
+                                        </form>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
                     </header>
                 </div>
             </div>
