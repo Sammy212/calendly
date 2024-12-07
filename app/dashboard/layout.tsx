@@ -10,10 +10,33 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { auth, signOut } from "../lib/auth";
 import { requireUser } from "../lib/hooks";
+import prisma from "../lib/db";
+import { redirect } from "next/navigation";
+
+
+// get user data to confirm user onboarding completion
+async function getData(userId: string) {
+    const data = await prisma.user.findUnique({
+        where: {
+            id: userId,
+        },
+        select: {
+            userName: true,
+        },
+    });
+
+    if(!data?.userName) {
+        return redirect("/onboarding");
+    }
+
+    return data;
+}
 
 export default async function DashboardLayout({children}: {children: ReactNode}) {
 
     const session = await requireUser();
+
+    const data = await getData(session.user?.id as string);
     return(
         <>
             <div className="min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
