@@ -11,6 +11,8 @@ import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { settingsSchema } from "../lib/zodSchemas";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 interface iAppProps {
     fullName: string;
@@ -65,11 +67,21 @@ export function SettingsForm({email, fullName, profileImage}: iAppProps ) {
                         />
                     </div>
 
-                    <div className="grid gap-y-2">
+                    <div className="grid gap-y-5">
                         <Label>Profile Image</Label>
                         {
                             currentProfileImage ? (
-                                <img src={currentProfileImage} alt="profile Image" className="size-16"/>
+                                <div className="relative size-16">
+                                    <img 
+                                        src={currentProfileImage} 
+                                        alt="profile Image" 
+                                        className="size-26 rounded-lg"
+                                    />
+
+                                    <Button className="absolute -top-3 -right-3 size-8 rounded-full" size="icon" variant="destructive">
+                                        <X className="size-4"/>
+                                    </Button>
+                                </div>
                             ) : (
                                 <h1>no Image</h1>
                             )
