@@ -26,6 +26,7 @@ model User {
   grantEmail    String?
   accounts      Account[]
   sessions      Session[]
+  availability  Availability[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -82,4 +83,26 @@ model Authenticator {
   transports           String?
 
   @@id([userId, credentialID])
+}
+
+model Availability {
+  id          String      @id   @default(uuid())
+
+  day         Day
+  fromTime    String
+  tillTime    String
+  isActive    Boolean     @default(true)
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+enum Day {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
 }

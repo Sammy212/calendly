@@ -12,6 +12,7 @@ import { auth, signOut } from "../lib/auth";
 import { requireUser } from "../lib/hooks";
 import prisma from "../lib/db";
 import { redirect } from "next/navigation";
+import { Toaster } from "@/components/ui/sonner";
 
 
 // get user data to confirm user onboarding completion
@@ -123,6 +124,10 @@ export default async function DashboardLayout({children}: {children: ReactNode})
                     </main>
                 </div>
             </div>
+            <Toaster
+                richColors 
+                closeButton
+            />
         </>
     )
 };

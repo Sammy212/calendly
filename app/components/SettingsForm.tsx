@@ -13,6 +13,8 @@ import { settingsSchema } from "../lib/zodSchemas";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { UploadDropzone } from "../lib/uploadthing";
+import { toast } from "sonner";
 
 interface iAppProps {
     fullName: string;
@@ -36,6 +38,10 @@ export function SettingsForm({email, fullName, profileImage}: iAppProps ) {
         shouldValidate: "onBlur",
         shouldRevalidate: "onInput",
     });
+
+    const handleDeleteImage = () => {
+        setCurrentProfileImage("");
+    }
 
     return (
         <Card>
@@ -69,6 +75,11 @@ export function SettingsForm({email, fullName, profileImage}: iAppProps ) {
 
                     <div className="grid gap-y-5">
                         <Label>Profile Image</Label>
+                        <input type="hidden" 
+                            name={fields.profileImage.name}
+                            key={fields.profileImage.key}
+                            value={currentProfileImage}
+                        />
                         {
                             currentProfileImage ? (
                                 <div className="relative size-16">
@@ -78,14 +89,31 @@ export function SettingsForm({email, fullName, profileImage}: iAppProps ) {
                                         className="size-26 rounded-lg"
                                     />
 
-                                    <Button className="absolute -top-3 -right-3 size-8 rounded-full" size="icon" variant="destructive">
+                                    <Button 
+                                        className="absolute -top-3 -right-3 size-8 rounded-full" 
+                                        size="icon" variant="destructive"
+                                        onClick={handleDeleteImage}
+                                        type="button"
+                                    >
                                         <X className="size-4"/>
                                     </Button>
                                 </div>
                             ) : (
-                                <h1>no Image</h1>
+                                <UploadDropzone
+                                    endpoint="imageUploader"
+                                    onClientUploadComplete={(res) => {
+                                        setCurrentProfileImage(res[0].url);
+                                        toast.success("Profile image uploaded");
+                                    }}
+                                    onUploadError={(error) => {
+                                        console.log("Something went wromg", error);
+                                        toast.error(error.message);
+                                    }}
+                                />
                             )
                         }
+                        {/* error message */}
+                        <p className="text-xs text-red-500">{fields.profileImage.errors}</p>
                     </div>
                 </CardContent>
 
