@@ -5,6 +5,7 @@ import { requireUser } from "./lib/hooks";
 import { parseWithZod } from "@conform-to/zod"
 import { onboardingSchema, onboardingSchemaValidation, settingsSchema } from "./lib/zodSchemas";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 
 export async function OnboadingAction(prevState: any, formData: FormData) {
@@ -131,4 +132,26 @@ export async function updateAvailabilityAction(formData: FormData) {
             tillTime: rawData[`tillTime-${id}`] as string,
         };
     });
+
+    try {
+        await prisma.$transaction(
+            // Multiple Mutations in a transaction instance
+            availabilityData.map((item) => prisma.availability.update({
+                where: {
+                    id: item.id
+                },
+                data: {
+                    isActive: item.isActive,
+                    fromTime: item.fromTime,
+                    tillTime: item.tillTime,
+                }
+            }))
+        );
+
+        // reset cache for availability Route
+        revalidatePath("/dashboard/availability");
+        
+    } catch (error) {
+        console.log(error);
+    }
 }
