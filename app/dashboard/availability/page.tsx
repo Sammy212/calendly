@@ -1,3 +1,4 @@
+import { updateAvailabilityAction } from "@/app/actions";
 import { SubmitButton } from "@/app/components/SubmitButtons";
 import prisma from "@/app/lib/db";
 import { requireUser } from "@/app/lib/hooks";
@@ -42,7 +43,7 @@ export default async function AvalabilityRoute() {
                 <CardDescription>Manage your availability with ease</CardDescription>
             </CardHeader>
 
-            <form>
+            <form action={updateAvailabilityAction}>
                 <CardContent className="flex flex-col gap-y-4">
                     {
                         data.map((item) => (

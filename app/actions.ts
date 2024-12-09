@@ -114,44 +114,39 @@ export async function SettingsAction(prevState: any, formData: FormData) {
 }
 
 export async function updateAvailabilityAction(formData: FormData) {
-    
-    const session = await requireUser();
+  const session = await requireUser();
 
-    // Convert Form data to raw data
-    const rawData = Object.fromEntries(formData.entries());
-
-    const availabilityData = Object.keys(rawData).filter((key) =>
-        key.startsWith("id-")
-    ).map((key) => {
-        const id = key.replace("id-", "");
-
-        return {
-            id,
-            isActive: rawData[`isActive-${id}`] === "on",
-            fromTime: rawData[`fromTime-${id}`] as string,
-            tillTime: rawData[`tillTime-${id}`] as string,
-        };
+  const rawData = Object.fromEntries(formData.entries());
+  const availabilityData = Object.keys(rawData)
+    .filter((key) => key.startsWith("id-"))
+    .map((key) => {
+      const id = key.replace("id-", "");
+      return {
+        id,
+        isActive: rawData[`isActive-${id}`] === "on",
+        fromTime: rawData[`fromTime-${id}`] as string,
+        tillTime: rawData[`tillTime-${id}`] as string,
+      };
     });
 
-    try {
-        await prisma.$transaction(
-            // Multiple Mutations in a transaction instance
-            availabilityData.map((item) => prisma.availability.update({
-                where: {
-                    id: item.id
-                },
-                data: {
-                    isActive: item.isActive,
-                    fromTime: item.fromTime,
-                    tillTime: item.tillTime,
-                }
-            }))
-        );
+  try {
+    await prisma.$transaction(
+      availabilityData.map((item) =>
+        prisma.availability.update({
+          where: { id: item.id },
+          data: {
+            isActive: item.isActive,
+            fromTime: item.fromTime,
+            tillTime: item.tillTime,
+          },
+        })
+      )
+    );
 
-        // reset cache for availability Route
-        revalidatePath("/dashboard/availability");
-        
-    } catch (error) {
-        console.log(error);
-    }
+    revalidatePath("/dashboard/availability");
+    return { status: "success", message: "Availability updated successfully" };
+  } catch (error) {
+    console.error("Error updating availability:", error);
+    return { status: "error", message: "Failed to update availability" };
+  }
 }
