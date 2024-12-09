@@ -40,6 +40,47 @@ export async function OnboadingAction(prevState: any, formData: FormData) {
         data: {
             userName: submission.value.userName,
             name: submission.value.fullName,
+            availability: {
+                createMany: {
+                    data: [
+                        {
+                            day: "Monday",
+                            fromTime: "08:00",
+                            tillTime: "18:00",
+                        },
+                        {
+                            day: "Tuesday",
+                            fromTime: "08:00",
+                            tillTime: "18:00",
+                        },
+                        {
+                            day: "Wednesday",
+                            fromTime: "08:00",
+                            tillTime: "18:00",
+                        },
+                        {
+                            day: "Thursday",
+                            fromTime: "08:00",
+                            tillTime: "18:00",
+                        },
+                        {
+                            day: "Friday",
+                            fromTime: "08:00",
+                            tillTime: "18:00",
+                        },
+                        {
+                            day: "Saturday",
+                            fromTime: "08:00",
+                            tillTime: "18:00",
+                        },
+                        {
+                            day: "Sunday",
+                            fromTime: "08:00",
+                            tillTime: "18:00",
+                        },
+                    ]
+                }
+            }
         },
     });
 
@@ -69,4 +110,25 @@ export async function SettingsAction(prevState: any, formData: FormData) {
     });
 
     return redirect("/dashboard");
+}
+
+export async function updateAvailabilityAction(formData: FormData) {
+    
+    const session = await requireUser();
+
+    // Convert Form data to raw data
+    const rawData = Object.fromEntries(formData.entries());
+
+    const availabilityData = Object.keys(rawData).filter((key) =>
+        key.startsWith("id-")
+    ).map((key) => {
+        const id = key.replace("id-", "");
+
+        return {
+            id,
+            isActive: rawData[`isActive-${id}`] === "on",
+            fromTime: rawData[`fromTime-${id}`] as string,
+            tillTime: rawData[`tillTime-${id}`] as string,
+        };
+    });
 }
