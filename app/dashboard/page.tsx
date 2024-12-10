@@ -37,7 +37,7 @@ export default async function DashboardPage() {
         <>
             {
                 data.eventType.length === 0 ? (
-                    <EmptyState title="You have no events" description="Create your first event below" buttonText="Add new event" href="/dashboard/new"/>
+                    <EmptyState title="You have no events" description="Create your first event below" buttonText="Add new event type" href="/dashboard/new"/>
                 ) : (
                     <p>See all these events</p>
                 )

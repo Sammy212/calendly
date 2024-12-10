@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Ban } from "lucide-react";
+import { Ban, PlusCircle } from "lucide-react";
 import Link from "next/link";
 
 interface iAppProps {
@@ -23,8 +23,11 @@ export function EmptyState({
             <h2 className="mt-6 text-xl font-semibold">{title}</h2>
             <p className="mb-8 mt-2 text-sm text-muted-foreground max-w-xs mx-auto">{description}</p>
 
-            <Button>
-                <Link href={href}>{buttonText}</Link>
+            <Button asChild>
+                <Link href={href}>
+                    <PlusCircle className="mr-2 size-4"/>
+                    {buttonText}
+                </Link>
             </Button>
         </div>
     )
