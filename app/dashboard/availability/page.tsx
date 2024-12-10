@@ -1,7 +1,5 @@
-import { updateAvailabilityAction } from "@/app/actions";
 import { SubmitButton } from "@/app/components/SubmitButtons";
 import prisma from "@/app/lib/db";
-import { requireUser } from "@/app/lib/hooks";
 import { times } from "@/app/lib/times";
 import { 
     Card, 
@@ -11,9 +9,19 @@ import {
     CardHeader, 
     CardTitle 
 } from "@/components/ui/card";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { 
+    Select, 
+    SelectContent, 
+    SelectGroup, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { notFound } from "next/navigation";
+import React from "react";
+import { requireUser } from "@/app/lib/hooks";
+import { updateAvailabilityAction } from "@/app/actions";
 
 async function getData(userId: string) {
     const data = await prisma.availability.findMany({
@@ -36,6 +44,7 @@ export default async function AvalabilityRoute() {
     const session = await requireUser();
 
     const data = await getData(session.user?.id as string);
+
     return (
         <Card>
             <CardHeader>
@@ -55,7 +64,7 @@ export default async function AvalabilityRoute() {
                                 <div className="flex items-center gap-x-3">
                                     <Switch
                                         defaultChecked={item.isActive}
-                                        name={`isActive-${item.isActive}`}
+                                        name={`isActive-${item.id}`}
                                     />
                                     <p>{item.day}</p>
                                 </div>
