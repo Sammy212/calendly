@@ -38,7 +38,10 @@ export function Calendar(props: CalendarProps<DateValue>) {
             />
 
             <div className="flex gap-8">
-                <CalendarGrid/>
+                <CalendarGrid
+                    state={state}
+                    isDateUnavailable={props.isDateUnavailable}
+                />
             </div>
         </div>
     )
