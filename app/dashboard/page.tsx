@@ -4,9 +4,9 @@ import { requireUser } from "../lib/hooks";
 import { EmptyState } from "../components/EmptyState";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Presentation, Settings, Settings2 } from "lucide-react";
+import { CopyCheck, ExternalLink, Link2, Pen, Presentation, Settings, Settings2, Trash } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
-import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 async function getData(userId: string) {
     const data = await prisma.user.findUnique({
@@ -77,6 +77,31 @@ export default async function DashboardPage() {
                                                         <Settings className="size-4"/>
                                                     </Button>
                                                 </DropdownMenuTrigger>
+                                                <DropdownMenuContent align="end">
+                                                    <DropdownMenuLabel>Event</DropdownMenuLabel>
+                                                    <DropdownMenuSeparator/>
+                                                    <DropdownMenuGroup>
+                                                        <DropdownMenuItem asChild>
+                                                            <Link href={`/${data.userName}/${item.url}`}>
+                                                                <ExternalLink className="mr-2 size-4"/>
+                                                                Preview
+                                                            </Link>
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem>
+                                                            <CopyCheck className="mr-2 size-4"/>
+                                                            Copy Link
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem>
+                                                            <Pen className="mr-2 size-4"/>
+                                                            Edit
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuGroup>
+                                                    <DropdownMenuSeparator/>
+                                                    <DropdownMenuItem>
+                                                        <Trash className="size-4 mr-2"/>
+                                                        Delete
+                                                    </DropdownMenuItem>
+                                                </DropdownMenuContent>
                                             </DropdownMenu>
                                         </div>
 
