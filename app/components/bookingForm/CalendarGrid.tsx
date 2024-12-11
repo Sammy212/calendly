@@ -41,24 +41,22 @@ return (
                 </tr>
             </thead>
             <tbody>
-                {Array.from({ length: weeksInMonth }, (_, weekIndex) => (
-                    <tr key={weekIndex}>
-                        {
-                            state.getDatesInWeek(weekIndex, startDate).map((date, i) =>
-                                date ? (
-                                <CalendarCell
-                                    key={i}
-                                    state={state}
-                                    date={date}
-                                    currentMonth={startDate}
-                                    isUnavailable={isDateUnavailable?.(date)}
-                                />
-                                ) : (
-                                    <td key={i} />
-                                )
-                            )
-                        }
-                    </tr>
+                {[...new Array(weeksInMonth).keys()].map((weekIndex) => ( // downlevelIteration | update to true in tsconfig.json
+                <tr key={weekIndex}>
+                    {state.getDatesInWeek(weekIndex).map((date, i) => (
+                    date
+                        ? (
+                        <CalendarCell
+                            key={i}
+                            state={state}
+                            date={date}
+                            currentMonth={startDate}
+                            isUnavailable={isDateUnavailable?.(date)}
+                        />
+                        )
+                        : <td key={i} />
+                    ))}
+                </tr>
                 ))}
             </tbody>
         </table>
