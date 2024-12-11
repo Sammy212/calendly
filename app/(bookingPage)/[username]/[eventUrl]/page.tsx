@@ -1,4 +1,5 @@
 import { Calendar } from "@/app/components/bookingForm/Calendar";
+import { RenderCalendar } from "@/app/components/bookingForm/RenderCalenar";
 import prisma from "@/app/lib/db";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -106,7 +107,7 @@ export default async function BookingFormRoute({
                         className="hidden md:block h-full w-[1px]"
                     />
 
-                    <Calendar/>
+                    <RenderCalendar/>
                 </CardContent>
             </Card>
         </div>

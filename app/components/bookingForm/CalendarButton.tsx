@@ -18,7 +18,7 @@ export function CalendarButton(
     const { focusProps } = useFocusRing();
     return (
         <Button 
-            variant="ghost"
+            variant="secondary"
             size="icon"
             ref={ref}
             disabled={props.isDisabled}
