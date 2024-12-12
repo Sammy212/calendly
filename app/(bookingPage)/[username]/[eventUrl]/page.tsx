@@ -1,5 +1,5 @@
-import { Calendar } from "@/app/components/bookingForm/Calendar";
 import { RenderCalendar } from "@/app/components/bookingForm/RenderCalenar";
+import { TimeTable } from "@/app/components/bookingForm/TimeTable";
 import prisma from "@/app/lib/db";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -122,10 +122,15 @@ export default async function BookingFormRoute({
                     <RenderCalendar
                         availability={data.user.availability as any}
                     />
-                    
+
                     <Separator
                         orientation="vertical" 
                         className="hidden md:block h-full w-[1px]"
+                    />
+
+                    <TimeTable
+                        selectedDate={selectedDate}
+                        userName={params.username}
                     />
                 </CardContent>
             </Card>
