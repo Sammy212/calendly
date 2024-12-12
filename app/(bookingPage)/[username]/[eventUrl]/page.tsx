@@ -1,7 +1,10 @@
 import { RenderCalendar } from "@/app/components/bookingForm/RenderCalenar";
 import { TimeTable } from "@/app/components/bookingForm/TimeTable";
+import { SubmitButton } from "@/app/components/SubmitButtons";
 import prisma from "@/app/lib/db";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { CalendarX2, Clock, Presentation } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -75,7 +78,7 @@ export default async function BookingFormRoute({
             {/* render form */}
             {
                 showForm ? (
-                    <Card className="max-w-[600px]">
+                    <Card className="max-w-[600px] w-full">
                         <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr] gap-4">
                             <div>
                                 <img 
@@ -128,8 +131,20 @@ export default async function BookingFormRoute({
                                 className="hidden md:block h-full w-[1px]"
                             />
 
-                            <form>
-                                <p>Show Form</p>
+                            <form className="flex flex-col gap-y-4">
+                                <div className="flex flex-col gap-y-2">
+                                    <Label>Your Name</Label>
+                                    <Input placeholder="Your Name"/>
+                                </div>
+
+                                <div className="flex flex-col gap-y-2">
+                                    <Label>Your Email</Label>
+                                    <Input placeholder="email@domain.com"/>
+                                </div>
+                                <SubmitButton 
+                                    text="Book Meeting"
+                                    className="w-full mt-5"
+                                />
                             </form>
                         </CardContent>
                     </Card>
