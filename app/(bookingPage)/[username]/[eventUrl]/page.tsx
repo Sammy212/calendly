@@ -1,3 +1,4 @@
+import { CreateMeetingAction } from "@/app/actions";
 import { RenderCalendar } from "@/app/components/bookingForm/RenderCalenar";
 import { TimeTable } from "@/app/components/bookingForm/TimeTable";
 import { SubmitButton } from "@/app/components/SubmitButtons";
@@ -131,15 +132,54 @@ export default async function BookingFormRoute({
                                 className="hidden md:block h-full w-[1px]"
                             />
 
-                            <form className="flex flex-col gap-y-4">
+                            <form 
+                                className="flex flex-col gap-y-4"
+                                action={CreateMeetingAction}
+                            >
+                                <input 
+                                    type="hidden" 
+                                    name="fromTime" 
+                                    value={searchParams.time}
+                                />
+                                <input 
+                                    type="hidden" 
+                                    name="eventDate" 
+                                    value={searchParams.date}
+                                />
+                                <input 
+                                    type="hidden" 
+                                    name="meetingLength" 
+                                    value={data.duration}
+                                />
+                                <input 
+                                    type="hidden" 
+                                    name="provider" 
+                                    value={data.videoCallSoftware}
+                                />
+                                <input 
+                                    type="hidden" 
+                                    name="username" 
+                                    value={params.username}
+                                />
+                                <input 
+                                    type="hidden" 
+                                    name="eventTypeId" 
+                                    value={data.id}
+                                />
                                 <div className="flex flex-col gap-y-2">
                                     <Label>Your Name</Label>
-                                    <Input placeholder="Your Name"/>
+                                    <Input 
+                                        placeholder="Your Name"
+                                        name="name"
+                                    />
                                 </div>
 
                                 <div className="flex flex-col gap-y-2">
                                     <Label>Your Email</Label>
-                                    <Input placeholder="email@domain.com"/>
+                                    <Input 
+                                        placeholder="email@domain.com"
+                                        name="email"
+                                    />
                                 </div>
                                 <SubmitButton 
                                     text="Book Meeting"

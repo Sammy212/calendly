@@ -243,6 +243,8 @@ export async function CreateMeetingAction(formData: FormData) {
             calendarId: getUserData.grantEmail as string,
             notifyParticipants: true,
         }
-    })
+    });
+
+    return redirect("/success");
 }
 
