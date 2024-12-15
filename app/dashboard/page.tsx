@@ -8,6 +8,7 @@ import { CopyCheck, ExternalLink, Link2, Pen, Presentation, Settings, Settings2,
 import { Switch } from "@/components/ui/switch";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { CopyLinkMenu } from "../components/CopyLinkMenu";
+import { EventActiveSwitcher } from "../components/EventActiveSwitcher";
 
 async function getData(userId: string) {
     const data = await prisma.user.findUnique({
@@ -99,9 +100,11 @@ export default async function DashboardPage() {
                                                         </DropdownMenuItem>
                                                     </DropdownMenuGroup>
                                                     <DropdownMenuSeparator/>
-                                                    <DropdownMenuItem>
-                                                        <Trash className="size-4 mr-2"/>
-                                                        Delete
+                                                    <DropdownMenuItem asChild>
+                                                        <Link href={`/dashboard/event/${item.id}/delete`}>
+                                                            <Trash className="size-4 mr-2"/>
+                                                            Delete
+                                                        </Link>
                                                     </DropdownMenuItem>
                                                 </DropdownMenuContent>
                                             </DropdownMenu>
@@ -129,7 +132,10 @@ export default async function DashboardPage() {
                                         </Link>
 
                                         <div className=" bg-muted px-5 py-3 justify-between items-center flex">
-                                            <Switch/>
+                                            <EventActiveSwitcher 
+                                                initialChecked={item.active} 
+                                                eventTypeId={item.id}
+                                            />
 
                                             <Button asChild>
                                                 <Link href={`/dashboard/event/${item.id}`}>
