@@ -28,7 +28,7 @@ import { useFormState } from "react-dom";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { eventTypeSchema } from "../lib/zodSchemas";
-import { CreateEventTypeAction } from "../actions";
+import { CreateEventTypeAction, EditEventAction } from "../actions";
 
 interface iAppProps {
     id: string;
@@ -45,7 +45,7 @@ export function EditEventForm({ id, title, url, description, duration, callProvi
 
     const [activePlatform, setActivePlatform] = useState<CallProvider>(callProvider as CallProvider);
 
-    const [lastResult, action] = useFormState(CreateEventTypeAction, undefined);
+    const [lastResult, action] = useFormState(EditEventAction, undefined);
     const [form, fields] = useForm({
         lastResult,
 
@@ -73,6 +73,7 @@ export function EditEventForm({ id, title, url, description, duration, callProvi
                     action={action} 
                     noValidate 
                 >
+                    <input type="hidden" name="id" value={id} />
                     <CardContent className="grid gap-y-5">
                         <div className="flex flex-col gap-y-2">
                             <Label>Title</Label>

@@ -68,7 +68,7 @@ export default async function DashboardPage() {
                                 data.eventType.map((item) => (
                                     <div 
                                         key={item.id}
-                                        className="overflow-hidden shadow rounded-lg border relative" 
+                                        className="overflow-hidden shadow rounded-lg border relative flex flex-col justify-between" 
                                     >
 
                                         <div className="absolute top-2 right-2">
@@ -83,7 +83,7 @@ export default async function DashboardPage() {
                                                     <DropdownMenuSeparator/>
                                                     <DropdownMenuGroup>
                                                         <DropdownMenuItem asChild>
-                                                            <Link href={`/${data.userName}/${item.url}`}>
+                                                            <Link href={`/${data.userName}/${item.url}`} target="_blank">
                                                                 <ExternalLink className="mr-2 size-4"/>
                                                                 Preview
                                                             </Link>
@@ -107,7 +107,11 @@ export default async function DashboardPage() {
                                             </DropdownMenu>
                                         </div>
 
-                                        <Link href="/" className="flex items-center p-5">
+                                        <Link 
+                                            // preview booking
+                                            href={`/${data.userName}/${item.url}`} target="_blank" 
+                                            className="flex items-center p-5"
+                                        >
                                             <div className="flex-shrink-0">
                                                 <Presentation className="size-6"/>
                                             </div>
@@ -124,11 +128,13 @@ export default async function DashboardPage() {
                                             </div>
                                         </Link>
 
-                                        <div className="bg-muted px-5 py-3 justify-between items-center flex">
+                                        <div className=" bg-muted px-5 py-3 justify-between items-center flex">
                                             <Switch/>
 
-                                            <Button>
-                                                Edit Event
+                                            <Button asChild>
+                                                <Link href={`/dashboard/event/${item.id}`}>
+                                                    Edit Event
+                                                </Link>
                                             </Button>
                                         </div>
                                     </div>
