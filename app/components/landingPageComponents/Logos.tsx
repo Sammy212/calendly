@@ -31,7 +31,7 @@ export function Logos() {
                         Brands.map((brand, index) => (
                             <div
                                 key={index}
-                                className="flex-shrink-0 w-1/4 flex justify-center items-center mt-8"
+                                className="flex-shrink-0 w-1/4 flex justify-center items-center mt-8 gap-x-2"
                             >
                                 <Image
                                     src={brand.brandLogo}

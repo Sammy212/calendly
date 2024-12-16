@@ -7,10 +7,10 @@ import IndianaUniversity from "@/public//indiana-university-customer-logo.svg";
 import Intercome from "@/public/intercom.svg";
 import Lyft from "@/public/lyft-customer-logo.svg";
 import SalesForce from "@/public/saleforce.svg";
+import { CloudRain, Flame, ShieldCheck, UserCog } from "lucide-react";
 
 
 // Carousel Data
-
 export const Brands = [
     {
         brandLogo: DropBoxLogo,
@@ -38,5 +38,30 @@ export const Brands = [
     },
     {
         brandLogo: Intercome,
+    },
+]
+
+
+// features Data
+export const FeaturesInfo = [
+    {
+        name: "Sign up for free",
+        description: "Some cool fancy description text for the sign up button just some more descriptive content to add to this content so there's some text",
+        icon: CloudRain,
+    },
+    {
+        name: "Blazing fast",
+        description: "Some cool fancy description text for the sign up button just some more descriptive content to add to this content so there's some text",
+        icon: Flame,
+    },
+    {
+        name: "Super secure with nylas",
+        description: "Some cool fancy description text for the Super secure with nylas just some more descriptive content to add to this content so there's some text",
+        icon: ShieldCheck,
+    },
+    {
+        name: "Easy to use",
+        description: "Some cool fancy description text for Easy to use just some more descriptive content to add to this content so there's some text",
+        icon: UserCog,
     },
 ]
