@@ -12,7 +12,7 @@ export function Hero() {
                 <h1 className="mt-8 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-medium leading-none">
                     Scheduling Made  <span className="block text-primary font-bold">super easy</span>
                 </h1>
-                <p className="max-w-xl mx-auto mt-4 lg:text-lg text-muted-foreground/60">Scheduling can be a pain but we make it super easy for you to schedule meeting with your clients</p>
+                <p className="max-w-xl mx-auto mt-4 lg:text-lg text-muted-foreground">Join 20 million professionals who easily book meetings with the #1 scheduling tool. Scheduling can be a pain but we make it super easy for you to schedule meeting with your clients</p>
 
                 <div className="mt-5 mb-12">
                     <AuthModal/>
