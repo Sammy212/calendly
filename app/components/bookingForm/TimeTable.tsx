@@ -4,7 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Prisma } from "@prisma/client";
 import { addMinutes, format, fromUnixTime, isAfter, isBefore, parse } from "date-fns"
 import Link from "next/link";
-import { GetFreeBusyRequest, GetFreeBusyResponse, NylasResponse } from "nylas";
+import { 
+    GetFreeBusyResponse, 
+    NylasResponse 
+} from "nylas";
 
 async function getData(userName: string, selectedDate: Date) {
 

@@ -9,7 +9,7 @@ export default function OnboardingRouteTwo() {
             <Card>
                 <CardHeader>
                     <CardTitle>You almost Done!</CardTitle>
-                    <CardDescription>Let's sync your calendar to your account</CardDescription>
+                    <CardDescription>Let&apos;s sync your calendar to your account</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Button asChild className="w-full">
