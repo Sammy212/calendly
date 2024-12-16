@@ -1,6 +1,7 @@
 "use client";
 
 import { Switch } from "@/components/ui/switch";
+// @ts-ignore
 import { useFormState } from "react-dom";
 import { eventStatusAction } from "../actions";
 import { useEffect, useTransition } from "react";

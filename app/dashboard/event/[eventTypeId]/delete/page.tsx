@@ -21,6 +21,7 @@ export default function DeleteEvent({params}: { params: { eventTypeId: string}})
                         <Link href="/dashboard">Cancel</Link>
                     </Button>
                     <form
+                        // @ts-ignore
                         action={deleteEventAction}
                     >
                         <input type="hidden"

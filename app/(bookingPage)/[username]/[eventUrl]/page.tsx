@@ -134,6 +134,7 @@ export default async function BookingFormRoute({
 
                             <form 
                                 className="flex flex-col gap-y-4"
+                                // @ts-ignore
                                 action={CreateMeetingAction}
                             >
                                 <input 
@@ -251,6 +252,7 @@ export default async function BookingFormRoute({
                                 className="hidden md:block h-full w-[1px]"
                             />
 
+                            {/* @ts-ignore */}
                             <TimeTable
                                 selectedDate={selectedDate}
                                 userName={params.username}

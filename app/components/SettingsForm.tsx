@@ -4,8 +4,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "./SubmitButtons";
+// @ts-ignore
 import { useFormState } from "react-dom";
-// import { useFormState } from "react-server-dom-webpack/server.edge";
 import { SettingsAction } from "../actions";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";

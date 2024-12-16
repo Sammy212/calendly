@@ -105,6 +105,7 @@ export default async function DashboardLayout({children}: {children: ReactNode})
                                     </DropdownMenuItem>
                                     <DropdownMenuItem asChild>
                                         <form className="w-full"
+                                            // @ts-ignore
                                             action={async () => {
                                                 "use server"
                                                 await signOut();

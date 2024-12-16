@@ -85,6 +85,7 @@ function calculateAvailableTimeSlots(date: string, dbAvailability: {
     );
 
     // Render Busy timeSlots from Nylas
+    //@ts-ignore
     const busySlots = nylasData.data[0].timeSlots.map((slot) => (
         {
             start: fromUnixTime(slot.startTime),

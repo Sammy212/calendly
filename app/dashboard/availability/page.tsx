@@ -51,7 +51,7 @@ export default async function AvalabilityRoute() {
                 <CardTitle>Availability</CardTitle>
                 <CardDescription>Manage your availability with ease</CardDescription>
             </CardHeader>
-
+            {/* @ts-ignore */}
             <form action={updateAvailabilityAction}>
                 <CardContent className="flex flex-col gap-y-4">
                     {

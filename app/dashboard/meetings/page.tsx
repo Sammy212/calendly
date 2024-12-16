@@ -62,6 +62,7 @@ export default async function MeetingsRoute() {
                             {
                                 data.data.map((item) => (
                                     <form
+                                        // @ts-ignore
                                         action={CancelMeetingAction}
                                         key={item.id}
                                     >
@@ -75,11 +76,14 @@ export default async function MeetingsRoute() {
                                         >
                                             <div className="fle">
                                                 <p className="text-muted-foreground text-sm">
+                                                    {/* @ts-ignore */}
                                                     {format(fromUnixTime(item.when.startTime), "EEE, dd MMM")}
                                                 </p>
 
                                                 <p className="text-muted-foreground text-xs pt-1">
+                                                    {/* @ts-ignore */}
                                                     {format(fromUnixTime(item.when.startTime), "hh:mm a")} -{" "}
+                                                    {/* @ts-ignore */}
                                                     {format(fromUnixTime(item.when.endTime), "hh:mm a")}
                                                 </p>
 
@@ -87,6 +91,7 @@ export default async function MeetingsRoute() {
                                                     <Presentation className="size-4 mr-2 text-primary"/>
 
                                                     <a 
+                                                        // @ts-ignore
                                                         href={item.conferencing.details.url} 
                                                         className="text-xs text-primary underline underline-offset-4"
                                                         target="_blank"

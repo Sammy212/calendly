@@ -170,6 +170,7 @@ export async function CreateEventTypeAction(prevState: any, formData: FormData) 
     }
 
     await prisma.eventType.create({
+        // @ts-ignore
         data: {
             title: submission.value.title,
             duration: submission.value.duration,

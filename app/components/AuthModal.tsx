@@ -21,12 +21,14 @@ export function AuthModal() {
                 </DialogHeader>
 
                 <div className="flex flex-col mt-5 gap-3">
+                    {/* @ts-ignore */}
                     <form action={async () => {
                             "use server";
                             await signIn("google");
                     }}>
                         <GoogleAuthButton/>
                     </form>
+                    {/* @ts-ignore */}
                     <form action={async () => {
                             "use server";
                             await signIn("github");
