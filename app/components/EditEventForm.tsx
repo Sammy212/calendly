@@ -28,7 +28,7 @@ import { useFormState } from "react-dom";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { eventTypeSchema } from "../lib/zodSchemas";
-import { CreateEventTypeAction, EditEventAction } from "../actions";
+import { EditEventAction } from "../actions";
 
 interface iAppProps {
     id: string;

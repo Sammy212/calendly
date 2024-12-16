@@ -4,8 +4,13 @@ import { requireUser } from "../lib/hooks";
 import { EmptyState } from "../components/EmptyState";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CopyCheck, ExternalLink, Link2, Pen, Presentation, Settings, Settings2, Trash } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
+import { 
+    ExternalLink,
+    Pen, 
+    Presentation, 
+    Settings,
+    Trash 
+} from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { CopyLinkMenu } from "../components/CopyLinkMenu";
 import { EventActiveSwitcher } from "../components/EventActiveSwitcher";

@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,7 +34,7 @@ export default function OnboardingRoute() {
             <Card>
                 <CardHeader>
                     <CardTitle>Welcome to Calen<span className="text-primary">dly</span></CardTitle>
-                    <CardDescription>Let's help you get started. <br />We just need a few details to get you up and running</CardDescription>
+                    <CardDescription>Let&apos;s help you get started. <br />We just need a few details to get you up and running</CardDescription>
                 </CardHeader>
 
                 <form 

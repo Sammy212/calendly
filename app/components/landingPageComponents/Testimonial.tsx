@@ -23,7 +23,7 @@ export function Testimonial() {
                     </svg>
 
                     <span className="relative z-10 ">
-                        Effortless Scheduling: "Before using ScheduleEase, managing my appointments was a nightmare. Now, my clients book directly into my calendar without any back-and-forth emails. It's a game-changer!"
+                        Effortless Scheduling: Before using ScheduleEase, managing my appointments was a nightmare. Now, my clients book directly into my calendar without any back-and-forth emails. It's a game-changer!
                     </span>
                 </p>
 

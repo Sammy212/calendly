@@ -3,10 +3,13 @@
 import prisma from "./lib/db";
 import { requireUser } from "./lib/hooks";
 import { parseWithZod } from "@conform-to/zod"
-import { eventTypeSchema, onboardingSchemaValidation, settingsSchema } from "./lib/zodSchemas";
+import { 
+    eventTypeSchema, 
+    onboardingSchemaValidation, 
+    settingsSchema 
+} from "./lib/zodSchemas";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { error } from "console";
 import { nylas } from "./lib/nylas";
 
 

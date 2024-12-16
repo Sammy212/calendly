@@ -7,7 +7,7 @@ import { nylas } from "@/app/lib/nylas";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { format, fromUnixTime } from "date-fns";
-import { Presentation, Video } from "lucide-react";
+import { Presentation } from "lucide-react";
 
 async function getData(userId: string) {
     const userData = await prisma.user.findUnique({
@@ -63,6 +63,7 @@ export default async function MeetingsRoute() {
                                 data.data.map((item) => (
                                     <form
                                         action={CancelMeetingAction}
+                                        key={item.id}
                                     >
                                         <input type="hidden"
                                             name="eventId"

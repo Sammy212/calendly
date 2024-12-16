@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Navbar } from "./components/Navbar";
 import { auth } from "./lib/auth";
 import { redirect } from "next/navigation";
@@ -6,6 +5,8 @@ import { Hero } from "./components/landingPageComponents/Hero";
 import { Logos } from "./components/landingPageComponents/Logos";
 import { Features } from "./components/landingPageComponents/Features";
 import { Testimonial } from "./components/landingPageComponents/Testimonial";
+import { CTA } from "./components/landingPageComponents/CTA";
+import { FooterSection } from "./components/landingPageComponents/Footer";
 
 export default async function Home() {
   const session = await auth();
@@ -22,7 +23,8 @@ export default async function Home() {
           <Logos/>
           <Features/>
           <Testimonial/>
-          Home page
+          <CTA/>
+          <FooterSection/>
         </div>
       </>
   );
