@@ -77,14 +77,14 @@ export default async function MeetingsRoute() {
                                             <div className="fle">
                                                 <p className="text-muted-foreground text-sm">
                                                     {/* @ts-ignore */}
-                                                    {format(fromUnixTime(item.when.startTime), "EEE, dd MMM")}
+                                                    {item.when.startTime ? format(fromUnixTime(item.when.startTime), "EEE, dd MMM") : "N/A"}
                                                 </p>
 
                                                 <p className="text-muted-foreground text-xs pt-1">
                                                     {/* @ts-ignore */}
-                                                    {format(fromUnixTime(item.when.startTime), "hh:mm a")} -{" "}
+                                                    {item.when.start ? format(fromUnixTime(item.when.start), "hh:mm a") : "N/A"} - {" "}
                                                     {/* @ts-ignore */}
-                                                    {format(fromUnixTime(item.when.endTime), "hh:mm a")}
+                                                    {item.when.endTime ? format(fromUnixTime(item.when.endTime), "hh:mm a") : "N/A"}
                                                 </p>
 
                                                 <div className="flex items-center mt-1">
@@ -92,7 +92,7 @@ export default async function MeetingsRoute() {
 
                                                     <a 
                                                         // @ts-ignore
-                                                        href={item.conferencing.details.url} 
+                                                        href={item.conferencing?.details?.url || "#"}
                                                         className="text-xs text-primary underline underline-offset-4"
                                                         target="_blank"
                                                     >
@@ -104,7 +104,9 @@ export default async function MeetingsRoute() {
                                             {/* Meeting Title n Participants*/}
                                             <div className="flex flex-col items-start">
                                                 <h2 className="text-sm font-medium">{item.title}</h2>
-                                                <p className="text-sm to-muted-foreground">You and {item.participants[0].name}</p>
+                                                <p className="text-sm text-muted-foreground">
+                                                    You and {item.participants && item.participants.length > 0 ? item.participants[0].name : "N/A"}
+                                                </p>
                                             </div>
 
                                             {/* Cancel Button */}
