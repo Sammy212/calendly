@@ -5,7 +5,7 @@ export function FooterSection() {
                 <p className="text-xs leading-5 text-foreground">&copy; Calen<span className="text-blue-500">dly</span> 2024</p>
                 <p className="text-sm leading-5 text-foreground flex gap-2">
                     Created by 
-                    <a href="https://samuel-afolabi.netlify.app/" 
+                    <a href="https://samuel-afo.vercel.app/" 
                         target="_blank" 
                         className="flex justify-center items-center gap-1 text-sm text-foreground font-bold hover:text-gray-400"
                     >
